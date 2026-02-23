@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { Check, ArrowRight } from "lucide-react";
 import { CTAButton } from "@/components/cta-button";
@@ -23,6 +24,15 @@ import {
   aboutText,
 } from "@/lib/data";
 
+export const metadata: Metadata = {
+  title: "HostProSuite | Direct bookings. Total freedom. Zero commissions.",
+  description:
+    "HostProSuite is a direct booking and payment system built for South African short-term rental hosts. No commissions, global payments, and full control over your bookings.",
+  alternates: {
+    canonical: "https://hostprosuite.com",
+  },
+};
+
 const badgeStyles = [
   "bg-navy text-white",
   "bg-white text-navy border border-border shadow-sm",
@@ -35,24 +45,24 @@ export default function Home() {
       {/* Hero */}
       <section className="relative overflow-hidden bg-white">
         <div
-          className="absolute inset-0 bg-[center_right] bg-cover bg-no-repeat"
+          className="absolute inset-0 bg-[center_right] bg-cover bg-no-repeat opacity-40 sm:opacity-100"
           style={{ backgroundImage: "url('/images/hero-bg.webp')" }}
         />
-        <div className="relative mx-auto max-w-4xl px-4 py-24 text-center sm:px-6 sm:py-32 lg:px-8 lg:py-40">
+        <div className="relative mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 sm:py-32 lg:px-8 lg:py-40">
           <FadeUp>
-            <h1 className="text-4xl font-bold tracking-tight text-navy sm:text-5xl lg:text-6xl">
+            <h1 className="text-3xl font-bold tracking-tight text-navy sm:text-5xl lg:text-6xl">
               {heroContent.headline}
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
+            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground sm:mt-6 sm:text-xl">
               {heroContent.subheadline}
             </p>
           </FadeUp>
           <FadeUp delay={0.2}>
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <div className="mt-8 flex flex-col items-center gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-4">
               {heroContent.badges.map((badge, i) => (
                 <span
                   key={badge}
-                  className={`inline-block rounded-full px-6 py-3 text-center text-sm font-semibold leading-snug whitespace-pre-line ${badgeStyles[i]}`}
+                  className={`inline-block rounded-full px-5 py-2.5 text-center text-xs font-semibold leading-snug whitespace-pre-line sm:px-6 sm:py-3 sm:text-sm ${badgeStyles[i]}`}
                 >
                   {badge}
                 </span>
@@ -75,7 +85,7 @@ export default function Home() {
           <Stagger className="grid gap-8 md:grid-cols-3">
             {valueProps.map((prop) => (
               <StaggerItem key={prop.title}>
-                <div className="h-full rounded-2xl border border-border/50 bg-card p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-accent-orange/5">
+                <div className="h-full rounded-2xl border border-border/50 bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-accent-orange/5 sm:p-8">
                   <h3 className="text-lg font-semibold text-navy">
                     {prop.title}
                   </h3>
@@ -106,22 +116,16 @@ export default function Home() {
           <FadeUp>
             <SectionHeading title="How it works" />
           </FadeUp>
-          <Stagger className="grid gap-12 md:grid-cols-3">
+          <div className="grid gap-12 md:grid-cols-3">
             {howItWorksSteps.map((step, i) => (
-              <StaggerItem key={step.step}>
-                <HowItWorksStep
-                  step={step}
-                  isLast={i === howItWorksSteps.length - 1}
-                />
-              </StaggerItem>
+              <HowItWorksStep
+                key={step.step}
+                step={step}
+                index={i}
+                isLast={i === howItWorksSteps.length - 1}
+              />
             ))}
-          </Stagger>
-          <FadeUp delay={0.3} className="mt-14 text-center">
-            <p className="mb-4 text-lg font-semibold text-white/90">
-              Ready to take control?
-            </p>
-            <CTAButton />
-          </FadeUp>
+          </div>
         </div>
       </section>
 
@@ -144,16 +148,34 @@ export default function Home() {
         </div>
       </section>
 
+      {/* CTA Banner */}
+      <section className="relative overflow-hidden py-16 sm:py-24">
+        <div
+          className="absolute inset-0 bg-center bg-cover bg-no-repeat"
+          style={{ backgroundImage: "url('/images/signup-bg.webp')" }}
+        />
+        <div className="relative mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+          <FadeUp>
+            <div className="flex flex-col items-center justify-between gap-4 rounded-full bg-white/95 px-8 py-5 shadow-xl backdrop-blur-sm sm:flex-row sm:px-12">
+              <p className="text-lg font-semibold text-navy">
+                Ready to take control?
+              </p>
+              <CTAButton size="default" />
+            </div>
+          </FadeUp>
+        </div>
+      </section>
+
       {/* Pricing */}
       <section className="relative overflow-hidden py-20 sm:py-28">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: "url('/images/pricing-bg.webp')" }}
         />
-        <div className="absolute inset-0 bg-navy/20" />
+        <div className="absolute inset-0 bg-navy/10" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <FadeUp>
-            <div className="text-white [&_p]:text-white/70">
+            <div className="text-navy [&_p]:text-navy/70">
               <SectionHeading
                 title="Pricing"
                 subtitle="Ready to level up your rental game? Stop losing control and income."
@@ -184,10 +206,10 @@ export default function Home() {
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <SlideFromLeft>
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              <h2 className="text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl">
                 About us
               </h2>
-              <p className="mt-6 text-lg leading-relaxed text-white/80">
+              <p className="mt-4 text-base leading-relaxed text-white/80 sm:mt-6 sm:text-lg">
                 {aboutText}
               </p>
               <div className="mt-8">

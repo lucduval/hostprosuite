@@ -85,12 +85,12 @@ export function ChatWidget() {
       {/* Chat panel */}
       <div
         className={cn(
-          "fixed bottom-20 right-4 z-50 flex w-80 flex-col overflow-hidden rounded-2xl border bg-background shadow-2xl transition-all duration-300 sm:right-6 sm:w-96",
+          "fixed bottom-20 left-4 right-4 z-50 flex max-w-96 flex-col overflow-hidden rounded-2xl border bg-background shadow-2xl transition-all duration-300 sm:left-auto sm:right-6",
           open
             ? "pointer-events-auto translate-y-0 opacity-100"
             : "pointer-events-none translate-y-4 opacity-0"
         )}
-        style={{ height: "28rem" }}
+        style={{ height: "min(28rem, calc(100dvh - 7rem))" }}
       >
         {/* Header */}
         <div className="flex items-center justify-between bg-navy px-4 py-3 text-white">

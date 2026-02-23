@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
@@ -23,6 +24,13 @@ export function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-lg">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-2">
+          <Image
+            src="/images/logo-icon.png"
+            alt="HostProSuite logo"
+            width={24}
+            height={24}
+            className="h-6 w-6"
+          />
           <span className="text-xl font-bold tracking-tight text-primary">
             {siteConfig.name}
             <span className="text-accent-orange">&trade;</span>
@@ -67,7 +75,14 @@ export function Navbar() {
           </SheetTrigger>
           <SheetContent side="right" className="w-72">
             <SheetHeader>
-              <SheetTitle className="text-left text-lg font-bold text-primary">
+              <SheetTitle className="flex items-center gap-2 text-left text-lg font-bold text-primary">
+                <Image
+                  src="/images/logo-icon.png"
+                  alt="HostProSuite logo"
+                  width={28}
+                  height={28}
+                  className="h-7 w-7"
+                />
                 {siteConfig.name}<span className="text-accent-orange">&trade;</span>
               </SheetTitle>
             </SheetHeader>

@@ -10,15 +10,17 @@ export function PricingCard() {
         <CardTitle className="text-sm font-semibold uppercase tracking-wider text-accent-orange">
           {pricing.planName}
         </CardTitle>
-        <div className="mt-4 flex items-baseline justify-center gap-1">
-          <span className="text-2xl font-semibold text-muted-foreground">
+        <div className="mt-4 flex items-start justify-center gap-1">
+          <span className="mt-2 text-lg font-semibold text-muted-foreground">
             {pricing.currency}
           </span>
           <span className="text-6xl font-bold tracking-tight">
             {pricing.amount}
           </span>
+          <span className="mb-1 self-end text-base text-muted-foreground">
+            {pricing.period}
+          </span>
         </div>
-        <p className="text-muted-foreground">{pricing.period}</p>
       </CardHeader>
       <CardContent className="space-y-6">
         <ul className="space-y-3">

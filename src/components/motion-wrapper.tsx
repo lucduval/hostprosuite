@@ -14,12 +14,12 @@ const fadeIn: Variants = {
 };
 
 const slideFromLeft: Variants = {
-  hidden: { opacity: 0, x: -60 },
+  hidden: { opacity: 0, x: -30 },
   visible: { opacity: 1, x: 0 },
 };
 
 const slideFromRight: Variants = {
-  hidden: { opacity: 0, x: 60 },
+  hidden: { opacity: 0, x: 30 },
   visible: { opacity: 1, x: 0 },
 };
 
@@ -31,6 +31,11 @@ const scaleIn: Variants = {
 const staggerContainer: Variants = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.12 } },
+};
+
+const staggerContainerSlow: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.2 } },
 };
 
 interface MotionProps {
@@ -138,6 +143,20 @@ export function StaggerItem({ children, className }: StaggerProps) {
     <motion.div
       variants={fadeUp}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+export function StaggerSlow({ children, className }: StaggerProps) {
+  return (
+    <motion.div
+      variants={staggerContainerSlow}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
       className={className}
     >
       {children}

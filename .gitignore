@@ -40,3 +40,4 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 image.png
+Gemini_Generated_Image_*.png

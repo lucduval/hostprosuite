@@ -3,17 +3,23 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { ChatWidget } from "@/components/chat-widget";
-import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/json-ld";
+import {
+  OrganizationJsonLd,
+  WebSiteJsonLd,
+  SoftwareApplicationJsonLd,
+} from "@/components/json-ld";
 import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -24,6 +30,9 @@ export const metadata: Metadata = {
   description:
     "Take control of your bookings with HostProSuite, the direct booking and payment system built for South African hosts. Zero commissions. Global payments.",
   metadataBase: new URL("https://hostprosuite.com"),
+  alternates: {
+    canonical: "https://hostprosuite.com",
+  },
   openGraph: {
     type: "website",
     locale: "en_ZA",
@@ -32,12 +41,21 @@ export const metadata: Metadata = {
     title: "HostProSuite | Direct bookings. Total freedom. Zero commissions.",
     description:
       "Take control of your bookings with HostProSuite. The direct booking and payment system built for South African hosts.",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "HostProSuite – Direct bookings. Total freedom. Zero commissions.",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "HostProSuite | Direct bookings. Total freedom. Zero commissions.",
     description:
       "Take control of your bookings with HostProSuite. The direct booking and payment system built for South African hosts.",
+    images: ["/opengraph-image"],
   },
 };
 
@@ -49,10 +67,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased overflow-x-hidden`}
       >
         <OrganizationJsonLd />
         <WebSiteJsonLd />
+        <SoftwareApplicationJsonLd />
         <Navbar />
         <main className="min-h-screen">{children}</main>
         <Footer />

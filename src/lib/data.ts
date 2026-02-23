@@ -176,7 +176,7 @@ export const features: Feature[] = [
 ];
 
 export const pricing = {
-  planName: "Host Pro Suite",
+  planName: "HostProSuite",
   currency: "R",
   amount: 200,
   period: "monthly",

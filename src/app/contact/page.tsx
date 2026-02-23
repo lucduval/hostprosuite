@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Phone, Mail, Facebook, Linkedin, Instagram } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { ContactForm } from "@/components/contact-form";
+import { BreadcrumbJsonLd } from "@/components/json-ld";
 import { FadeUp } from "@/components/motion-wrapper";
 import { siteConfig } from "@/lib/data";
 
@@ -9,26 +10,30 @@ export const metadata: Metadata = {
   title: "Contact",
   description:
     "Get in touch with HostProSuite. Call, email, or send us a message.",
+  alternates: {
+    canonical: "https://hostprosuite.com/contact",
+  },
 };
 
 export default function ContactPage() {
   return (
     <>
-      <section className="bg-navy py-16 text-white sm:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "https://hostprosuite.com" },
+          { name: "Contact", url: "https://hostprosuite.com/contact" },
+        ]}
+      />
+      <section className="pt-32 pb-20 sm:pt-40 sm:pb-28">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <FadeUp>
             <SectionHeading
               title="Contact Us"
               subtitle="Have questions? We'd love to hear from you."
             />
           </FadeUp>
-        </div>
-      </section>
-
-      <section className="py-20 sm:py-28">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-2">
-            <FadeUp>
+          <div className="mt-12 grid gap-12 lg:grid-cols-2">
+            <FadeUp delay={0.1}>
               <h3 className="text-xl font-semibold">Send us a message</h3>
               <p className="mt-2 mb-6 text-sm text-muted-foreground">
                 Fill out the form and we&apos;ll get back to you as soon as
@@ -37,7 +42,7 @@ export default function ContactPage() {
               <ContactForm />
             </FadeUp>
 
-            <FadeUp delay={0.15}>
+            <FadeUp delay={0.2}>
               <div className="space-y-8">
                 <div>
                   <h3 className="text-xl font-semibold">Get in touch</h3>
