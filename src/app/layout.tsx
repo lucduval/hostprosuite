@@ -4,6 +4,7 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { ChatWidget } from "@/components/chat-widget";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 import {
   OrganizationJsonLd,
   WebSiteJsonLd,
@@ -78,6 +79,7 @@ export default function RootLayout({
         <Footer />
         <ChatWidget />
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
