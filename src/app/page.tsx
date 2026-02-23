@@ -83,26 +83,35 @@ export default function Home() {
             />
           </FadeUp>
           <Stagger className="grid gap-8 md:grid-cols-3">
-            {valueProps.map((prop) => (
+            {valueProps.map((prop, i) => (
               <StaggerItem key={prop.title}>
-                <div className="h-full rounded-2xl border border-border/50 bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-accent-orange/5 sm:p-8">
-                  <h3 className="text-lg font-semibold text-navy">
-                    {prop.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                    {prop.description}
-                  </p>
-                  <ul className="mt-4 space-y-2">
-                    {prop.bullets.map((bullet) => (
-                      <li
-                        key={bullet}
-                        className="flex items-center gap-2 text-sm"
-                      >
-                        <Check className="h-4 w-4 shrink-0 text-accent-orange" />
-                        {bullet}
-                      </li>
-                    ))}
-                  </ul>
+                <div className="group relative h-full overflow-hidden rounded-2xl border border-border/50 bg-card transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-accent-orange/10">
+                  <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-navy via-accent-orange to-navy opacity-70 transition-opacity duration-500 group-hover:opacity-100" />
+                  <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-accent-orange/5 transition-transform duration-500 group-hover:scale-150" />
+                  <div className="relative p-6 sm:p-8">
+                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-navy text-sm font-bold text-white">
+                      {i + 1}
+                    </span>
+                    <h3 className="mt-4 text-lg font-bold text-navy">
+                      {prop.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                      {prop.description}
+                    </p>
+                    <ul className="mt-5 space-y-2.5">
+                      {prop.bullets.map((bullet) => (
+                        <li
+                          key={bullet}
+                          className="flex items-center gap-2.5 text-sm font-medium"
+                        >
+                          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent-orange/15">
+                            <Check className="h-3 w-3 text-accent-orange" />
+                          </span>
+                          {bullet}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </StaggerItem>
             ))}
