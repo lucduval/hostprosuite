@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { ChatWidget } from "@/components/chat-widget";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import {
   OrganizationJsonLd,
   WebSiteJsonLd,
@@ -76,6 +77,7 @@ export default function RootLayout({
         <main className="min-h-screen">{children}</main>
         <Footer />
         <ChatWidget />
+        <SpeedInsights />
       </body>
     </html>
   );
