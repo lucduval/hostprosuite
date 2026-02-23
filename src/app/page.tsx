@@ -1,65 +1,217 @@
 import Image from "next/image";
+import { Check, ArrowRight } from "lucide-react";
+import { CTAButton } from "@/components/cta-button";
+import { SectionHeading } from "@/components/section-heading";
+import { FeatureCard } from "@/components/feature-card";
+import { PricingCard } from "@/components/pricing-card";
+import { FAQAccordion } from "@/components/faq-accordion";
+import { HowItWorksStep } from "@/components/how-it-works-step";
+import {
+  FadeUp,
+  SlideFromLeft,
+  SlideFromRight,
+  ScaleIn,
+  Stagger,
+  StaggerItem,
+} from "@/components/motion-wrapper";
+import {
+  heroContent,
+  valueProps,
+  howItWorksSteps,
+  features,
+  faqs,
+  aboutText,
+} from "@/lib/data";
+
+const badgeStyles = [
+  "bg-navy text-white",
+  "bg-white text-navy border border-border shadow-sm",
+  "bg-accent-orange text-white",
+];
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <>
+      {/* Hero */}
+      <section className="relative overflow-hidden bg-white">
+        <div
+          className="absolute inset-0 bg-[center_right] bg-cover bg-no-repeat"
+          style={{ backgroundImage: "url('/images/hero-bg.webp')" }}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+        <div className="relative mx-auto max-w-4xl px-4 py-24 text-center sm:px-6 sm:py-32 lg:px-8 lg:py-40">
+          <FadeUp>
+            <h1 className="text-4xl font-bold tracking-tight text-navy sm:text-5xl lg:text-6xl">
+              {heroContent.headline}
+            </h1>
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
+              {heroContent.subheadline}
+            </p>
+          </FadeUp>
+          <FadeUp delay={0.2}>
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+              {heroContent.badges.map((badge, i) => (
+                <span
+                  key={badge}
+                  className={`inline-block rounded-full px-6 py-3 text-center text-sm font-semibold leading-snug whitespace-pre-line ${badgeStyles[i]}`}
+                >
+                  {badge}
+                </span>
+              ))}
+            </div>
+          </FadeUp>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+      </section>
+
+      {/* Value Propositions */}
+      <section className="relative py-20 sm:py-28">
+        <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-accent-orange/30 to-transparent" />
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <FadeUp>
+            <SectionHeading
+              title="Take back control of your bookings and income"
+              subtitle="Do you own an apartment, beachside cottage or vacation villa? Are you looking to maximise profits, minimise commissions, and take charge of your direct bookings? HostProSuite was built for you."
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </FadeUp>
+          <Stagger className="grid gap-8 md:grid-cols-3">
+            {valueProps.map((prop) => (
+              <StaggerItem key={prop.title}>
+                <div className="h-full rounded-2xl border border-border/50 bg-card p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-accent-orange/5">
+                  <h3 className="text-lg font-semibold text-navy">
+                    {prop.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                    {prop.description}
+                  </p>
+                  <ul className="mt-4 space-y-2">
+                    {prop.bullets.map((bullet) => (
+                      <li
+                        key={bullet}
+                        className="flex items-center gap-2 text-sm"
+                      >
+                        <Check className="h-4 w-4 shrink-0 text-accent-orange" />
+                        {bullet}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </StaggerItem>
+            ))}
+          </Stagger>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* How It Works */}
+      <section className="bg-navy py-20 text-white sm:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <FadeUp>
+            <SectionHeading title="How it works" />
+          </FadeUp>
+          <Stagger className="grid gap-12 md:grid-cols-3">
+            {howItWorksSteps.map((step, i) => (
+              <StaggerItem key={step.step}>
+                <HowItWorksStep
+                  step={step}
+                  isLast={i === howItWorksSteps.length - 1}
+                />
+              </StaggerItem>
+            ))}
+          </Stagger>
+          <FadeUp delay={0.3} className="mt-14 text-center">
+            <p className="mb-4 text-lg font-semibold text-white/90">
+              Ready to take control?
+            </p>
+            <CTAButton />
+          </FadeUp>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="py-20 sm:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <FadeUp>
+            <SectionHeading
+              title="Features"
+              subtitle="Accept direct bookings, manage guest interactions, and collect payments, all from an easy-to-use dashboard."
+            />
+          </FadeUp>
+          <Stagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {features.map((feature) => (
+              <StaggerItem key={feature.title}>
+                <FeatureCard feature={feature} />
+              </StaggerItem>
+            ))}
+          </Stagger>
+        </div>
+      </section>
+
+      {/* Pricing */}
+      <section className="relative overflow-hidden py-20 sm:py-28">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: "url('/images/pricing-bg.webp')" }}
+        />
+        <div className="absolute inset-0 bg-navy/20" />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <FadeUp>
+            <div className="text-white [&_p]:text-white/70">
+              <SectionHeading
+                title="Pricing"
+                subtitle="Ready to level up your rental game? Stop losing control and income."
+              />
+            </div>
+          </FadeUp>
+          <ScaleIn delay={0.15}>
+            <PricingCard />
+          </ScaleIn>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-20 sm:py-28">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <FadeUp>
+            <SectionHeading title="Frequently Asked Questions" />
+          </FadeUp>
+          <FadeUp delay={0.1}>
+            <FAQAccordion items={faqs} />
+          </FadeUp>
+        </div>
+      </section>
+
+      {/* About / Final CTA */}
+      <section className="relative overflow-hidden bg-navy py-20 text-white sm:py-28">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(244,168,93,0.1)_0%,_transparent_50%)]" />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
+            <SlideFromLeft>
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                About us
+              </h2>
+              <p className="mt-6 text-lg leading-relaxed text-white/80">
+                {aboutText}
+              </p>
+              <div className="mt-8">
+                <CTAButton size="lg">
+                  Get Started Today
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </CTAButton>
+              </div>
+            </SlideFromLeft>
+            <SlideFromRight>
+              <div className="overflow-hidden rounded-2xl shadow-2xl shadow-black/30">
+                <Image
+                  src="/images/lighthouse.png"
+                  alt="South African coastal lighthouse at dusk"
+                  width={640}
+                  height={480}
+                  className="h-auto w-full object-cover"
+                  priority={false}
+                />
+              </div>
+            </SlideFromRight>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
