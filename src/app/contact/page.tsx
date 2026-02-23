@@ -24,8 +24,11 @@ export default function ContactPage() {
           { name: "Contact", url: "https://hostprosuite.com/contact" },
         ]}
       />
-      <section className="pt-32 pb-20 sm:pt-40 sm:pb-28">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-28">
+        <div className="absolute inset-0 bg-gradient-to-br from-accent-orange/10 via-white to-navy/10" />
+        <div className="absolute -top-20 -right-20 h-[30rem] w-[30rem] rounded-full bg-accent-orange/10 blur-3xl" />
+        <div className="absolute -bottom-20 -left-20 h-[30rem] w-[30rem] rounded-full bg-navy/10 blur-3xl" />
+        <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <FadeUp>
             <SectionHeading
               title="Contact Us"

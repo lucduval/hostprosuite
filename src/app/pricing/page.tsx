@@ -23,13 +23,20 @@ export default function PricingPage() {
         ]}
       />
       <OfferJsonLd />
-      <section className="pt-32 pb-20 sm:pt-40 sm:pb-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-28">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: "url('/images/pricing-bg.webp')" }}
+        />
+        <div className="absolute inset-0 bg-navy/10" />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <FadeUp>
-            <SectionHeading
-              title="Pricing"
-              subtitle="Ready to level up your rental game? Stop losing control and income."
-            />
+            <div className="text-navy [&_p]:text-navy/70">
+              <SectionHeading
+                title="Pricing"
+                subtitle="Ready to level up your rental game? Stop losing control and income."
+              />
+            </div>
           </FadeUp>
           <FadeUp delay={0.1}>
             <div className="mt-12">
