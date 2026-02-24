@@ -27,7 +27,7 @@ export default function FeaturesPage() {
       <section className="relative overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-28">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/images/hero-bg.webp')" }}
+          style={{ backgroundImage: "url('/images/hero-bg.jpeg')" }}
         />
         <div className="absolute inset-0 bg-white/75" />
         <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">

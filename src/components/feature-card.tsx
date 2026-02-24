@@ -1,5 +1,6 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check } from "lucide-react";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import { ExpandableCard } from "@/components/expandable-card";
 import type { Feature } from "@/lib/data";
 
 interface FeatureCardProps {
@@ -14,22 +15,34 @@ export function FeatureCard({ feature }: FeatureCardProps) {
       <Card className="h-full overflow-hidden border-border/50 bg-card transition-shadow duration-300 hover:shadow-xl">
         <div className="h-1 bg-gradient-to-r from-navy via-accent-orange to-navy" />
         <CardHeader>
-          <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-xl bg-accent-orange/10">
-            <Icon className="h-6 w-6 text-accent-orange" />
-          </div>
-          <CardTitle className="text-lg">{feature.title}</CardTitle>
-          <p className="text-sm text-muted-foreground">{feature.description}</p>
+          <ExpandableCard
+            header={
+              <div className="flex items-start gap-3">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent-orange/10">
+                  <Icon className="h-6 w-6 text-accent-orange" />
+                </div>
+                <CardTitle className="text-lg">{feature.title}</CardTitle>
+              </div>
+            }
+          >
+            <div className="pt-4">
+              <p className="mb-4 text-sm text-muted-foreground">
+                {feature.description}
+              </p>
+              <ul className="space-y-2">
+                {feature.bullets.map((bullet) => (
+                  <li
+                    key={bullet}
+                    className="flex items-start gap-2 text-sm"
+                  >
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent-orange" />
+                    <span>{bullet}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </ExpandableCard>
         </CardHeader>
-        <CardContent>
-          <ul className="space-y-2">
-            {feature.bullets.map((bullet) => (
-              <li key={bullet} className="flex items-start gap-2 text-sm">
-                <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent-orange" />
-                <span>{bullet}</span>
-              </li>
-            ))}
-          </ul>
-        </CardContent>
       </Card>
     </div>
   );

@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Check, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { CTAButton } from "@/components/cta-button";
 import { SectionHeading } from "@/components/section-heading";
 import { FeatureCard } from "@/components/feature-card";
+import { ExpandableValueCard } from "@/components/expandable-value-card";
 import { PricingCard } from "@/components/pricing-card";
 import { FAQAccordion } from "@/components/faq-accordion";
 import { HowItWorksStep } from "@/components/how-it-works-step";
@@ -34,26 +35,27 @@ export const metadata: Metadata = {
 };
 
 const badgeStyles = [
-  "bg-navy text-white",
-  "bg-white text-navy border border-border shadow-sm",
-  "bg-accent-orange text-white",
+  "bg-navy text-white shadow-md",
+  "bg-white/90 text-navy shadow-md",
+  "bg-accent-orange text-white shadow-md",
 ];
 
 export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-white">
+      <section className="relative overflow-hidden bg-black">
         <div
           className="absolute inset-0 bg-[center_right] bg-cover bg-no-repeat opacity-40 sm:opacity-100"
-          style={{ backgroundImage: "url('/images/hero-bg.webp')" }}
+          style={{ backgroundImage: "url('/images/hero-bg.jpeg')" }}
         />
+        <div className="absolute inset-0 bg-black/40" />
         <div className="relative mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 sm:py-32 lg:px-8 lg:py-40">
           <FadeUp>
-            <h1 className="text-3xl font-bold tracking-tight text-navy sm:text-5xl lg:text-6xl">
+            <h1 className="text-3xl font-bold tracking-tight text-white drop-shadow-lg sm:text-5xl lg:text-6xl">
               {heroContent.headline}
             </h1>
-            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground sm:mt-6 sm:text-xl">
+            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/90 drop-shadow-md sm:mt-6 sm:text-xl">
               {heroContent.subheadline}
             </p>
           </FadeUp>
@@ -85,34 +87,7 @@ export default function Home() {
           <Stagger className="grid gap-8 md:grid-cols-3">
             {valueProps.map((prop, i) => (
               <StaggerItem key={prop.title}>
-                <div className="group relative h-full overflow-hidden rounded-2xl border border-border/50 bg-card transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-accent-orange/10">
-                  <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-navy via-accent-orange to-navy opacity-70 transition-opacity duration-500 group-hover:opacity-100" />
-                  <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-accent-orange/5 transition-transform duration-500 group-hover:scale-150" />
-                  <div className="relative p-6 sm:p-8">
-                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-navy text-sm font-bold text-white">
-                      {i + 1}
-                    </span>
-                    <h3 className="mt-4 text-lg font-bold text-navy">
-                      {prop.title}
-                    </h3>
-                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                      {prop.description}
-                    </p>
-                    <ul className="mt-5 space-y-2.5">
-                      {prop.bullets.map((bullet) => (
-                        <li
-                          key={bullet}
-                          className="flex items-center gap-2.5 text-sm font-medium"
-                        >
-                          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent-orange/15">
-                            <Check className="h-3 w-3 text-accent-orange" />
-                          </span>
-                          {bullet}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
+                <ExpandableValueCard prop={prop} index={i} />
               </StaggerItem>
             ))}
           </Stagger>
