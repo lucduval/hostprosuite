@@ -38,17 +38,22 @@ export default function FeaturesPage() {
             />
           </FadeUp>
 
-          <Stagger className="mt-16 divide-y divide-border/60">
+          <Stagger className="mt-16 space-y-4">
             {features.map((feature, index) => {
               const Icon = feature.icon;
-              const isEven = index % 2 === 0;
+              const opacityLevels = [
+                "bg-white/90",
+                "bg-white/80",
+                "bg-white/85",
+                "bg-white/75",
+                "bg-white/90",
+                "bg-white/80",
+              ];
 
               return (
                 <StaggerItem key={feature.title}>
                   <div
-                    className={`group relative rounded-2xl px-6 py-10 transition-colors duration-300 sm:px-10 sm:py-12 ${
-                      isEven ? "bg-transparent" : "bg-muted/40"
-                    }`}
+                    className={`group relative rounded-2xl px-6 py-10 shadow-sm backdrop-blur-sm transition-all duration-300 hover:shadow-md sm:px-10 sm:py-12 ${opacityLevels[index % opacityLevels.length]}`}
                   >
                     <div className="flex items-start gap-5">
                       <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent-orange/10 transition-colors duration-300 group-hover:bg-accent-orange/20">
