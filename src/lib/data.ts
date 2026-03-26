@@ -38,8 +38,9 @@ export const navLinks = [
 export const heroContent = {
   headline: "Direct bookings. Total freedom. Zero commissions.",
   subheadline:
-    "Take control of your bookings with HostProSuite\u2122, the new direct booking and payment system built for South African hosts.",
-  cta: "Sign Up",
+    "Your guests book direct. You keep every rand. No commissions, no algorithms, no middlemen.",
+  cta: "Start earning direct",
+  socialProof: "Trusted by SA hosts keeping 100% of their income",
   badges: [
     "Stop paying commissions.\nStart owning your bookings.",
     "Direct bookings. Global payments.\nZero middlemen.",

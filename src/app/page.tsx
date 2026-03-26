@@ -34,23 +34,18 @@ export const metadata: Metadata = {
   },
 };
 
-const badgeStyles = [
-  "bg-navy text-white shadow-md",
-  "bg-white/90 text-navy shadow-md",
-  "bg-accent-orange text-white shadow-md",
-];
-
 export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-black">
+      <section className="relative -mt-16 overflow-hidden bg-black">
         <div
           className="absolute inset-0 bg-[center_right] bg-cover bg-no-repeat opacity-40 sm:opacity-100"
           style={{ backgroundImage: "url('/images/hero-bg.jpeg')" }}
         />
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="relative mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 sm:py-32 lg:px-8 lg:py-40">
+        {/* Bottom-weighted vignette — darkens the text area, lets the ocean view breathe */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/40 to-black/20" />
+        <div className="relative mx-auto max-w-4xl px-4 pt-36 pb-20 text-center sm:px-6 sm:pt-52 sm:pb-32 lg:px-8 lg:pt-60 lg:pb-40">
           <FadeUp>
             <h1 className="text-3xl font-bold tracking-tight text-white drop-shadow-lg sm:text-5xl lg:text-6xl">
               {heroContent.headline}
@@ -60,15 +55,13 @@ export default function Home() {
             </p>
           </FadeUp>
           <FadeUp delay={0.2}>
-            <div className="mt-8 flex flex-col items-center gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-4">
-              {heroContent.badges.map((badge, i) => (
-                <span
-                  key={badge}
-                  className={`inline-block rounded-full px-5 py-2.5 text-center text-xs font-semibold leading-snug whitespace-pre-line sm:px-6 sm:py-3 sm:text-sm ${badgeStyles[i]}`}
-                >
-                  {badge}
-                </span>
-              ))}
+            <div className="mt-8 flex flex-col items-center gap-4 sm:mt-10">
+              <CTAButton size="lg" className="w-full sm:w-auto px-10">
+                Start earning direct
+              </CTAButton>
+              <p className="text-sm font-medium text-white/70">
+                {heroContent.socialProof}
+              </p>
             </div>
           </FadeUp>
         </div>
